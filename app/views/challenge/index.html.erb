@@ -1,0 +1,18 @@
+<h1>Hackathon</h1>
+
+<%= form_for @challenge, :url => { :action => "create" } do |f| %>
+    <%= f.text_field :title, placeholder: "title" %>
+    <%= f.text_field :description, placeholder: "desc" %>
+    <%= f.select :tags, ["BFS", "DP", "Basic"], :prompt => "Select One" %>
+    <%= f.text_field :user_id, :type => "hidden" %>
+    <%= f.submit "Challenge" %>
+<% end %>
+
+<% @challenges.each do |challenge| %> 
+    <div>
+        <%= challenge.title %>
+        <%= challenge.description %>
+        <%= challenge.tags %>
+    </div>
+<% end %>
+
