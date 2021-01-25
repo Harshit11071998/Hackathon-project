@@ -1,10 +1,10 @@
 class ChallengeController < ApplicationController
-  before_action :authenticate_user!
-  # before_action :set_params
+  # before_action :authenticate_user!
 
   def index
     @challenges = Challenge.all
-    @challenge = Challenge.new
+    @challenge = Challenge.new(user: current_user)
+    # @challenge.user = current_user
   end
 
   def create
