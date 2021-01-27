@@ -18,6 +18,8 @@
       <th scope="col">vote_count</th>
       <th scope="col">Email</th>
       <th scope="col">vote</th>
+      <th scope="col">Collab</th>
+      <th scope="col">Collaborators</th>
     </tr>
   </thead>
   <tbody>
@@ -30,12 +32,29 @@
       <td><%= challenge.votes.count %></td>
        <td><span><%= challenge.user.email %></span></td>
       <% if challenge.user != current_user %>
+          <td>
           <% if challenge.voted_by? current_user %>
-           <td> <%= link_to "x", challenge_vote_path(challenge), method: :delete %></td>
+           <%= link_to "x", challenge_vote_path(challenge), method: :delete %>
           <% else %>
-            <td><%= link_to "+", challenge_vote_path(challenge), method: :post %></td>
+            <%= link_to "+", challenge_vote_path(challenge), method: :post %>
           <% end %>
+          </td>
+          <td>
+          <% if challenge.collaborated_by? current_user %>
+             <%= link_to "decollab", challenge_collaborator_path(challenge), method: :delete %>
+          <% else %>
+            <%= link_to "collab", challenge_collaborator_path(challenge), method: :post %> 
         <% end %> 
+        </td>
+        <% else %>
+          <td></td>
+          <td></td>
+      <% end %>
+      <td>
+        <% challenge.collaboraters_name(challenge.id).each do |name| %>
+          <div><%= name %></div>
+        <% end %>
+      </td>
     </tr>
   <% end %> 
   </tbody>
