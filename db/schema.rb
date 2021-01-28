@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210128154726) do
+ActiveRecord::Schema.define(version: 20210128180732) do
 
   create_table "challenges", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "title", null: false
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 20210128154726) do
     t.datetime "updated_at", null: false
     t.index ["challenge_id"], name: "index_collaborates_on_challenge_id"
     t.index ["user_id"], name: "index_collaborates_on_user_id"
+  end
+
+  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.bigint "challenge_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_id"], name: "index_tags_on_challenge_id"
   end
 
   create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

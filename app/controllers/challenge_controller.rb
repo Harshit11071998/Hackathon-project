@@ -9,7 +9,7 @@ class ChallengeController < ApplicationController
     elsif params[:title_search]
       @challenges = Challenge.where("title LIKE ?", "%#{params[:title_search]}%")
     elsif params[:employee_search]
-      @challenges = Challenge.where("user_id LIKE ?", "%#{params[:employee_search]}%")
+      @challenges = Challenge.where("empid LIKE ?", "%#{params[:employee_search]}%")
     else
       @challenges = Challenge.order(params[:sort])
     end
@@ -21,6 +21,11 @@ class ChallengeController < ApplicationController
     @challenge = Challenge.new(set_params)
     @challenge.user = current_user
     if @challenge.save
+      tag_string = params[:challenge][:tag]
+      tag_array = tag_string.split(",")
+      tag_array.each do |tag_name|
+        @challenge.tags.create(name: tag_name)
+      end
       redirect_to root_path, notice: "challenge created"
     else
       redirect_to root_path, alert: "Error: challenge not saved"
@@ -30,6 +35,6 @@ class ChallengeController < ApplicationController
   private
 
   def set_params
-    params.require(:challenge).permit(:title, :description, :tags, :user_id)
+    params.require(:challenge).permit(:title, :description, :tag, :user_id)
   end
 end
