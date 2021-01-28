@@ -7,17 +7,32 @@
     <%= f.text_field :user_id, :type => "hidden" %>
     <%= f.submit "Challenge" %>
 <% end %>
+<div class ="features">
+  <div class="dropdown">
+    <a class="btn btn-secondary dropdown-toggle" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Sort
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <div><%= link_to "Recent challenge", :sort => "created_at ASC" %></div>
+      <div> <%= link_to "older challenge", :sort => "created_at DESC" %></div>
+      <div> <%= link_to "Most Votes", :sort => "most_votes" %></div>
+      <div> <%= link_to "least Votes", :sort => "least_votes" %></div>
+    </div> 
+  </div>
+  <div>
+    <form class="form-inline my-2 my-lg-0 mr-auto" action="<%= challenge_index_path %>">
+          <input class="form-control mr-sm-2 search" type="Text" placeholder="Filter by title" aria-label="Search" name="title_search" >
+          <button class="btn my-2 my-sm-0" type="submit"></button>
+    </form>
+  </div>
+  <div>
+    <form class="form-inline my-2 my-lg-0 mr-auto" action="<%= challenge_index_path %>">
+          <input class="form-control mr-sm-2 search" type="Text" placeholder="Filter by email" aria-label="Search" name="employee_search" >
+          <button class="btn my-2 my-sm-0" type="submit"></button>
+    </form>
+  </div>
+</div>
 
-<div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Sort
-  </a>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-  <div><%= link_to "Recent challenge", :sort => "created_at ASC" %></div>
-  <div> <%= link_to "older challenge", :sort => "created_at DESC" %></div>
-  <div> <%= link_to "Most Votes", :sort => "most_votes" %></div>
-  <div> <%= link_to "least Votes", :sort => "least_votes" %></div>
-  </div> 
 <table class="table">
   <thead>
     <tr>

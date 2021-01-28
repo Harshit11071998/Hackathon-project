@@ -6,6 +6,10 @@ class ChallengeController < ApplicationController
       @challenges = Challenge.all.sort_by { |challenge| challenge.votes.count }.reverse
     elsif params[:sort] == "least_votes"
       @challenges = Challenge.all.sort_by { |challenge| challenge.votes.count }
+    elsif params[:title_search]
+      @challenges = Challenge.where("title LIKE ?", "%#{params[:title_search]}%")
+    elsif params[:employee_search]
+      @challenges = Challenge.where("user_id LIKE ?", "%#{params[:employee_search]}%")
     else
       @challenges = Challenge.order(params[:sort])
     end
