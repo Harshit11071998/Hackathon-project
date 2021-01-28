@@ -8,6 +8,16 @@
     <%= f.submit "Challenge" %>
 <% end %>
 
+<div class="dropdown">
+  <a class="btn btn-secondary dropdown-toggle" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sort
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+  <div><%= link_to "Recent challenge", :sort => "created_at ASC" %></div>
+  <div> <%= link_to "older challenge", :sort => "created_at DESC" %></div>
+  <div> <%= link_to "Most Votes", :sort => "most_votes" %></div>
+  <div> <%= link_to "least Votes", :sort => "least_votes" %></div>
+  </div> 
 <table class="table">
   <thead>
     <tr>
@@ -17,6 +27,7 @@
       <th scope="col">tags</th>
       <th scope="col">vote_count</th>
       <th scope="col">Email</th>
+      <th scope="col">Created at</th>
       <th scope="col">vote</th>
       <th scope="col">Collab</th>
       <th scope="col">Collaborators</th>
@@ -30,7 +41,8 @@
       <td><%= challenge.description %></td>
       <td><%= challenge.tags %></td>
       <td><%= challenge.votes.count %></td>
-       <td><span><%= challenge.user.email %></span></td>
+      <td><span><%= challenge.user.email %></span></td>
+      <td><%= challenge.created_at %></td>
       <% if challenge.user != current_user %>
           <td>
           <% if challenge.voted_by? current_user %>

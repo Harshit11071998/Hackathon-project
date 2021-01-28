@@ -24,11 +24,11 @@ RSpec.describe "Votes", type: :request do
       end
     end
   end
-  #   describe "DELETE /destroy" do
-  #     it "destroy a new votes" do
-  #       expect {
-  #         delete challenge_vote_url(challenge_id: challenge["id"]), params: valid_params
-  #       }.to change(Vote, :count).by(-1)
-  #     end
+  # describe "DELETE /destroy" do
+  #   it "destroy a new votes" do
+  #     expect {
+  #       delete challenge_vote_url(challenge_id: challenge["id"]), params: valid_params
+  #     }.to change(Vote, :count).by(-1)
   #   end
+  # end
 end

@@ -2,7 +2,13 @@ class ChallengeController < ApplicationController
   # before_action :authenticate_user!
 
   def index
-    @challenges = Challenge.all
+    if params[:sort] == "most_votes"
+      @challenges = Challenge.all.sort_by { |challenge| challenge.votes.count }.reverse
+    elsif params[:sort] == "least_votes"
+      @challenges = Challenge.all.sort_by { |challenge| challenge.votes.count }
+    else
+      @challenges = Challenge.order(params[:sort])
+    end
     @challenge = Challenge.new(user: current_user)
     # @challenge.user = current_user
   end
