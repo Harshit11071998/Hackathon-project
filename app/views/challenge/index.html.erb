@@ -3,7 +3,7 @@
 <%= form_for @challenge, :url => { :action => "create" } do |f| %>
     <%= f.text_field :title, placeholder: "title" %>
     <%= f.text_field :description, placeholder: "desc" %>
-    <%= f.text_field :tags, placeholder: "tags" %>
+    <%= f.text_field :tags, value: "", placeholder: "tags" %>
     <%= f.text_field :user_id, :type => "hidden" %>
     <%= f.submit "Challenge" %>
 <% end %>
@@ -56,7 +56,7 @@
       <td><%= challenge.description %></td>
       <td>
       <% challenge.tags.each do |tag| %>
-       <%= tag.name.inspect %>
+       <div><%= tag.name %><div>
       <% end %>
       </td>
       <td><%= challenge.votes.count %></td>

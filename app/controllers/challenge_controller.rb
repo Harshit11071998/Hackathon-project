@@ -18,10 +18,11 @@ class ChallengeController < ApplicationController
   end
 
   def create
-    @challenge = Challenge.new(set_params)
+    # @challenge = current_user.challenges.build(title: params[:challenge][:title], description: params[:challenge][:description])
+    @challenge = Challenge.new(title: params[:challenge][:title], description: params[:challenge][:description])
     @challenge.user = current_user
     if @challenge.save
-      tag_string = params[:challenge][:tag]
+      tag_string = params[:challenge][:tags]
       tag_array = tag_string.split(",")
       tag_array.each do |tag_name|
         @challenge.tags.create(name: tag_name)
@@ -35,6 +36,6 @@ class ChallengeController < ApplicationController
   private
 
   def set_params
-    params.require(:challenge).permit(:title, :description, :tag, :user_id)
+    params.require(:challenge).permit(:title, :description, :tags, :user_id)
   end
 end

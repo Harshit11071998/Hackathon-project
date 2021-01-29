@@ -17,7 +17,7 @@ class Challenge < ApplicationRecord
     name_string = []
     user_id = Collaborate.select(:user_id).where(challenge_id: challenge_id)
     user_id.each do |user|
-      name_string << User.find(user.user_id).email
+      name_string << User.find(user.user_id).empid
     end
     return(name_string)
   end
