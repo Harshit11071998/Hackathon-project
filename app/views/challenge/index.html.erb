@@ -54,9 +54,9 @@
       <th scope="row"><%= challenge.id %></th>
       <td><%= challenge.title %></td>
       <td><%= challenge.description %></td>
-
+      <td>
       <% challenge.tags.each do |tag| %>
-       <%= tag.name %>
+       <%= tag.name.inspect %>
       <% end %>
       </td>
       <td><%= challenge.votes.count %></td>

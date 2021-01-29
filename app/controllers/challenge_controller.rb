@@ -9,7 +9,7 @@ class ChallengeController < ApplicationController
     elsif params[:title_search]
       @challenges = Challenge.where("title LIKE ?", "%#{params[:title_search]}%")
     elsif params[:employee_search]
-      @challenges = Challenge.where("empid LIKE ?", "%#{params[:employee_search]}%")
+      @challenges = Challenge.where("user_id LIKE ?", "%#{params[:employee_search]}%")
     else
       @challenges = Challenge.order(params[:sort])
     end

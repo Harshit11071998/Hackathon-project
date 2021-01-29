@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210128180732) do
+ActiveRecord::Schema.define(version: 20210129055225) do
 
   create_table "challenges", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "title", null: false
     t.text "description", null: false
-    t.text "tags"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "tags"
     t.index ["user_id"], name: "index_challenges_on_user_id"
   end
 
