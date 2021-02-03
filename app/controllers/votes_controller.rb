@@ -10,7 +10,6 @@ class VotesController < ApplicationController
   def destroy
     @challenge = Challenge.find(params[:challenge_id])
     @challenge.votes.where(user: current_user).take.try(:destroy)
-    @challenge.destroy
     redirect_back(fallback_location: root_path)
   end
 end

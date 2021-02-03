@@ -3,7 +3,7 @@ class Challenge < ApplicationRecord
   validates :title, :description, presence: true
   has_many :votes, dependent: :destroy
   has_many :collaborate, dependent: :destroy
-  has_many :tags
+  has_many :tags, dependent: :destroy
 
   def voted_by?(user)
     votes.exists?(user: user)

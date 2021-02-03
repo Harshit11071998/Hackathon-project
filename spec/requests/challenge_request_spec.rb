@@ -2,13 +2,12 @@ require "rails_helper"
 
 RSpec.describe "Challenges", type: :request do
   let(:user) { build(:user) }
-  let(:challenge) { build(:challenge, user: user) }
+  let(:challenge) { build(:challenge) }
   let(:invalid_attributes) {
     { title: "", description: "" }
   }
   before(:each) do
     sign_in(user)
-    challenge.user = user
   end
   valid_attributes = FactoryBot.attributes_for(:challenge)
   describe "GET /index" do
