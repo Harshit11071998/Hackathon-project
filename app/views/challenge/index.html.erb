@@ -4,7 +4,7 @@
 <div class= "form-field">
     <%= f.text_field :title, placeholder: "Title", class: "form-control " %>
     <%= f.text_field :description, placeholder: "Description", class: "form-control" %>
-    <%= f.text_field :tags, value: "", placeholder: "tags", class: "form-control" %>
+    <%= f.text_field :tags, value: "", placeholder: "Tags", class: "form-control" %>
   </div>
     <%= f.text_field :user_id, :type => "hidden" %>
     <%= f.submit "Add Challenge", class: "btn btn-outline-info" %>
@@ -41,15 +41,15 @@
 <table class="table  table-bordered">
   <thead class="thead">
     <tr>
-      <th scope="col">Challenge_id</th>
-      <th scope="col">title</th>
-      <th scope="col">description</th>
-      <th scope="col">tags</th>
-      <th scope="col">vote_count</th>
+      <th scope="col">Challenge Id</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Tags</th>
+      <th scope="col">Vote Count</th>
       <th scope="col">Emp ID</th>
       <th scope="col">Created at</th>
-      <th scope="col">vote</th>
-      <th scope="col">Collab</th>
+      <th scope="col">Vote</th>
+      <th scope="col">Collaborate</th>
       <th scope="col">Collaborators</th>
     </tr>
   </thead>
@@ -70,16 +70,24 @@
       <% if challenge.user != current_user %>
           <td>
           <% if challenge.voted_by? current_user %>
-           <%= link_to "x", challenge_vote_path(challenge), method: :delete %>
+           <%= link_to "<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='currentColor' class='bi bi-x' viewBox='0 0 16 16'>
+                         <path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'/>
+                        </svg>".html_safe, challenge_vote_path(challenge), method: :delete %>
           <% else %>
-            <%= link_to "+", challenge_vote_path(challenge), method: :post %>
+            <%= link_to "<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='currentColor' class='bi bi-plus' viewBox='0 0 16 16'>
+                        <path d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z'/>
+                       </svg>".html_safe, challenge_vote_path(challenge), method: :post %>
           <% end %>
           </td>
           <td>
           <% if challenge.collaborated_by? current_user %>
-             <%= link_to "decollab", challenge_collaborator_path(challenge), method: :delete %>
+             <%= link_to "<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='currentColor' class='bi bi-x' viewBox='0 0 16 16'>
+                         <path d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'/>
+                        </svg>".html_safe, challenge_collaborator_path(challenge), method: :delete %>
           <% else %>
-            <%= link_to "collab", challenge_collaborator_path(challenge), method: :post %> 
+            <%= link_to "<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='currentColor' class='bi bi-check' viewBox='0 0 16 16'>
+                        <path d='M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z'/>
+                      </svg>".html_safe, challenge_collaborator_path(challenge), method: :post %> 
         <% end %> 
         </td>
         <% else %>

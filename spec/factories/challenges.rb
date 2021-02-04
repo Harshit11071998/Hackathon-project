@@ -3,6 +3,5 @@ FactoryBot.define do
     title { "MyText" }
     description { "MyDesc" }
     tags { "Mytag" }
-    user { nil }
   end
 end
