@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :challenge do
     title { "MyText" }
     description { "MyDesc" }
-    tags { "Mytag" }
+    # tags { "Mytag" }
   end
 end

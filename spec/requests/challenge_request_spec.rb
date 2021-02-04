@@ -1,13 +1,15 @@
 require "rails_helper"
 
 RSpec.describe "Challenges", type: :request do
-  let(:user) { build(:user) }
-  let(:challenge) { build(:challenge) }
+  let!(:user) { create(:user, empid: "E01") }
+  let!(:challenge) { create(:challenge, user_id: user.id) }
+  # let(:tags) { create_list(:tag, 2, :challenge => challenge) }
   let(:invalid_attributes) {
     { title: "", description: "" }
   }
   before(:each) do
     sign_in(user)
+    #user.empid = 1
   end
   valid_attributes = FactoryBot.attributes_for(:challenge)
   describe "GET /index" do
@@ -19,6 +21,7 @@ RSpec.describe "Challenges", type: :request do
   describe "POST /create" do
     context "with valid parameters" do
       it "create a new challenge" do
+        valid_attributes[:tags] = "String,Tags"
         expect {
           post challenge_index_url, params: { challenge: valid_attributes }
         }.to change(Challenge, :count).by(1)

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :tag do
-    name { "MyTag" }
-    challenge { nil }
+    name { Faker::ProgrammingLanguage.name }
+    challenge { FactoryBot.create(:challenge) }
   end
 end
