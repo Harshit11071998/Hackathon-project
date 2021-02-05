@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  root "challenge#index"
+  root "challenges#index"
   # post "challenge/create"
   devise_for :users
-  resources :challenge do
+  resources :challenges do
     resource :collaborator, only: [:create, :destroy]
     resource :vote, only: [:create, :destroy]
   end

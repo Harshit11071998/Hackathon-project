@@ -25,7 +25,7 @@ RSpec.describe "Collaborates", type: :request do
     end
   end
   describe "DELETE /destroy" do
-    it "destroy a new votes" do
+    it "destroy a new Collaboration" do
       vote = create(:collaborate, user_id: user.id, challenge_id: challenge.id)
       expect {
         delete challenge_collaborator_url(challenge)

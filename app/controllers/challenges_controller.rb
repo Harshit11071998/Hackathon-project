@@ -1,4 +1,4 @@
-class ChallengeController < ApplicationController
+class ChallengesController < ApplicationController
   # before_action :authenticate_user!
 
   def index
@@ -31,6 +31,12 @@ class ChallengeController < ApplicationController
     else
       redirect_to root_path, alert: "Error: challenge not saved"
     end
+  end
+
+  def destroy
+    @challenge = Challenge.find(params[:id])
+    @challenge.destroy
+    redirect_to root_path, notice: "Challenge Deleted"
   end
 
   private
