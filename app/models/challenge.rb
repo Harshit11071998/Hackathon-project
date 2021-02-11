@@ -4,6 +4,7 @@ class Challenge < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :collaborate, dependent: :destroy
   has_many :tags, dependent: :destroy
+  self.per_page = 5
 
   def voted_by?(user)
     votes.exists?(user: user)

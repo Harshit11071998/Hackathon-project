@@ -7,6 +7,9 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "devise"
+gem "will_paginate"
+gem "bootstrap-will_paginate"
+gem "rubycritic"
 gem "rails", "~> 5.1.7"
 # Use mysql as the database for Active Record
 gem "mysql2", ">= 0.3.18", "< 0.6.0"
